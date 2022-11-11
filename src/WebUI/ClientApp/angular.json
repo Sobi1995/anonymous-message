@@ -131,5 +131,8 @@
       }
     }
   },
-  "defaultProject": "anonymous_message.WebUI"
+  "defaultProject": "anonymous_message.WebUI",
+  "cli": {
+    "analytics": "d0a0a1e8-9416-4e6f-948e-e6aae06a4b93"
+  }
 }
