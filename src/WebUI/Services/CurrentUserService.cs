@@ -6,12 +6,14 @@ namespace anonymous_message.WebUI.Services;
 
 public class CurrentUserService : ICurrentUserService
 {
-    private readonly IHttpContextAccessor _httpContextAccessor;
+    public Guid? UserId { get; }
+    public bool IsAuthenticated { get; }
 
     public CurrentUserService(IHttpContextAccessor httpContextAccessor)
     {
-        _httpContextAccessor = httpContextAccessor;
-    }
+        var claim = httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
 
-    public string? UserId => _httpContextAccessor.HttpContext?.User?.FindFirstValue(ClaimTypes.NameIdentifier);
+        IsAuthenticated = claim != null;
+        UserId = IsAuthenticated ? Guid.Parse(claim) : Guid.Empty;
+    }
 }
