@@ -4,9 +4,9 @@ using anonymous_message.Domain.Entities;
  
 using anonymous_message.Infrastructure.Identity;
 using anonymous_message.Infrastructure.Persistence.Interceptors;
-using Duende.IdentityServer.EntityFramework.Options;
+ 
 using MediatR;
-using Microsoft.AspNetCore.ApiAuthorization.IdentityServer;
+ 
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
@@ -20,7 +20,7 @@ public class ApplicationDbContext :IdentityDbContext<ApplicationUser, Applicatio
 
     public ApplicationDbContext(
         DbContextOptions<ApplicationDbContext> options,
-        IOptions<OperationalStoreOptions> operationalStoreOptions,
+        // IOptions<OperationalStoreOptions> operationalStoreOptions,
         IMediator mediator,
         AuditableEntitySaveChangesInterceptor auditableEntitySaveChangesInterceptor) 
         : base(options)
