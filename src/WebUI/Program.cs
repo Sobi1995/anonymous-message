@@ -7,6 +7,7 @@ builder.Services.AddApplicationServices();
 builder.Services.AddInfrastructureServices(builder.Configuration);
 builder.Services.AddWebUIServices();
 
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -21,6 +22,11 @@ if (app.Environment.IsDevelopment())
         await initialiser.InitialiseAsync();
         await initialiser.SeedAsync();
     }
+       app.UseSwagger();
+    app.UseSwaggerUI(c =>
+    {
+        c.SwaggerEndpoint("v1/swagger.json", "MyAPI V1");
+    });
 }
 else
 {
@@ -32,11 +38,7 @@ app.UseHealthChecks("/health");
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-app.UseSwaggerUi3(settings =>
-{
-    settings.Path = "/api";
-    settings.DocumentPath = "/api/specification.json";
-});
+     app.UseSwaggerUI();
 
 app.UseRouting();
 
