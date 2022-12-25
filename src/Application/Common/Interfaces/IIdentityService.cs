@@ -1,4 +1,6 @@
-﻿using anonymous_message.Application.Common.Models;
+﻿using anonymous_message.Application.Account.Commands;
+using anonymous_message.Application.Common.Models;
+using anonymous_message.Application.Responses;
 
 namespace anonymous_message.Application.Common.Interfaces;
 
@@ -13,4 +15,9 @@ public interface IIdentityService
     Task<(Result Result, Guid UserId)> CreateUserAsync(string userName, string password);
 
     Task<Result> DeleteUserAsync(Guid userId);
+
+    Task<AuthenticationResponse> LoginAsync(LoginCommand user);
+ 
+
+
 }
